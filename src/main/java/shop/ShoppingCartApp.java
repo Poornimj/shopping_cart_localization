@@ -9,10 +9,11 @@ public class ShoppingCartApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Select language / Valitse kieli / Välj språk:");
+        System.out.println("Select language / Valitse kieli / Välj språk / 言語を選択してください:");
         System.out.println("1. English");
         System.out.println("2. Finnish");
         System.out.println("3. Swedish");
+        System.out.println("4. Japanese");
 
         int choice = scanner.nextInt();
         scanner.nextLine();
@@ -25,6 +26,9 @@ public class ShoppingCartApp {
                 break;
             case 3:
                 locale = new Locale("sv", "SE");
+                break;
+            case 4:
+                locale = new Locale("ja", "JP");
                 break;
             case 1:
             default:

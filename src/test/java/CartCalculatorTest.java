@@ -64,5 +64,10 @@ public class CartCalculatorTest {
 
         assertEquals(1000.0 + 1000.0, result, 0.001);
     }
+    @Test
+    void testDecimalPrice() {
+        double result = calculator.calculateItemTotal(12.5, 2);
+        assertEquals(25.0, result, 0.001);
+    }
 
 }

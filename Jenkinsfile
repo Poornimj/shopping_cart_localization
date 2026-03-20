@@ -1,55 +1,65 @@
 pipeline {
     agent any
 
-    environment {
-        IMAGE_NAME = "poornimj/shopping-cart-app"
-        IMAGE_TAG = "latest"
+    tools {
+        jdk 'JDK17'
+        maven 'Maven'
     }
 
-    tools {
-        maven 'Maven'
-        jdk 'JDK17'
+    environment {
+        PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;${env.PATH}"
+        DOCKERHUB_CREDENTIALS_ID = 'Docker_Hub'
+        IMAGE_NAME = 'poornimj/shopping-cart-app'
+        IMAGE_TAG = 'latest'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                git branch: 'main', url: 'https://github.com/Poornimj/shopping_cart.git'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                bat 'mvn clean package'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
 
         stage('JaCoCo Report') {
             steps {
-                jacoco()
+                bat 'mvn jacoco:report'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
+                bat 'docker build -t %IMAGE_NAME%:%IMAGE_TAG% .'
             }
         }
 
-        stage('Push Docker Image to Docker Hub') {
+        stage('Push Docker Image') {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', DOCKERHUB_CREDENTIALS_ID) {
-                        docker.image("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}").push()
+                        def appImage = docker.image("${IMAGE_NAME}:${IMAGE_TAG}")
+                        appImage.push()
                     }
                 }
             }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            archiveArtifacts artifacts: 'target/site/jacoco/**/*', fingerprint: true
         }
     }
 }
