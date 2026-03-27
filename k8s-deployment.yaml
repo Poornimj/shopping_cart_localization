@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopping-cart-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shopping-cart
+  template:
+    metadata:
+      labels:
+        app: shopping-cart
+    spec:
+      containers:
+        - name: shopping-cart
+          image: poornimj/shopping_cart_localization
+          imagePullPolicy: Never
+          command: ["sh", "-c", "tail -f /dev/null"]
