@@ -9,14 +9,14 @@ pipeline {
     environment {
         PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;${env.PATH}"
         DOCKERHUB_CREDENTIALS_ID = 'Docker_Hub'
-        IMAGE_NAME = 'poornimj/shopping-cart-app'
+        IMAGE_NAME = 'poornimj/shopping_cart_localization'
         IMAGE_TAG = 'latest'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Poornimj/shopping_cart.git'
+                git branch: 'main', url: 'https://github.com/Poornimj/shopping_cart_localization.git'
             }
         }
 
