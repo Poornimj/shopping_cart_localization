@@ -17,20 +17,20 @@
         <Insets top="15" right="15" bottom="15" left="15"/>
     </padding>
 
-    <Label fx:id="languageLabel" text="%select.language"/>
+    <Label fx:id="languageLabel" text="Select Language"/>
     <ComboBox fx:id="languageComboBox"/>
-    <Button fx:id="confirmLanguageButton" text="%confirm.language" onAction="#handleLanguageChange"/>
+    <Button fx:id="confirmLanguageButton" text="Confirm Language" onAction="#handleLanguageChange"/>
 
     <Separator/>
 
-    <Label fx:id="itemCountLabel" text="%enter.item.count"/>
-    <TextField fx:id="itemCountField" promptText="%item.count.prompt"/>
-    <Button fx:id="generateItemsButton" text="%enter.items" onAction="#handleGenerateItems"/>
+    <Label fx:id="itemCountLabel" text="Enter Item Count"/>
+    <TextField fx:id="itemCountField" promptText="Enter number of items"/>
+    <Button fx:id="generateItemsButton" text="Generate Items" onAction="#handleGenerateItems"/>
 
     <VBox fx:id="itemsContainer" spacing="8"/>
 
-    <Button fx:id="calculateButton" text="%calculate.total" onAction="#handleCalculate"/>
+    <Button fx:id="calculateButton" text="Calculate Total" onAction="#handleCalculate"/>
 
-    <Label fx:id="totalLabel" text="%total.cost"/>
+    <Label fx:id="totalLabel" text="Total Cost"/>
     <Label fx:id="resultLabel" text="0.00"/>
 </VBox>

@@ -30,6 +30,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.3.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>
@@ -62,6 +68,9 @@
                     <excludes>
                         <exclude>shop/ShoppingCartApp*</exclude>
                         <exclude>shop/ShoppingCartController*</exclude>
+                        <exclude>shop/CartService*</exclude>
+                        <exclude>shop/LocalizationService*</exclude>
+                        <exclude>shop/DatabaseConnection*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -90,9 +99,7 @@
                             <mainClass>shop.ShoppingCartApp</mainClass>
                         </manifest>
                     </archive>
-
                 </configuration>
-
             </plugin>
         </plugins>
     </build>
